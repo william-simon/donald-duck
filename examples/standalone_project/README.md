@@ -4,3 +4,5 @@ This example project is a bare-bones example of how to use the GHL as a header-o
 1. mkdir build && cd build
 2. cmake ..
 3. cmake --build .
+
+Until open sourced it will not work, as it relies on CPM to pull the GHL library.

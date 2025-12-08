@@ -30,8 +30,8 @@ build-backend = "py_build_cmake.build"
 [project]
 name = "graph_hook_library"
 version = "0.1.0"
-description = "Python bindings for the Graph Hook Library (https://github.com/ibm/graph-hook-library)"
-authors = [{ name = "IBM" }]
+description = "Python bindings for the Graph Hook Library"
+authors = [{ name = "REDACTED" }]
 readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }

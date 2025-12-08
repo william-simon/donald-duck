@@ -31,9 +31,6 @@ conda create -n ghl gxx>=13.3.0 cmake python=3.11
 The GHL can be setup/installed in two different ways:
 
 #### 1. As a Python-based library:
-<!-- For sake of convenience, we provide a Python package with bindings, that can be installed using:
-
-`pip install git+https://github.com/IBM/graph-hook-library.git` -->
 
 Until open-sourced and deanonymized, the GHL can be installed by calling
 

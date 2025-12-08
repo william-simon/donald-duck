@@ -25,7 +25,7 @@ CPMAddPackage(
 CPMAddPackage(
   NAME GHL
   GIT_TAG Tunaberk-Almaci
-  GIT_REPOSITORY git@github.ibm.com:TorchADS/GGL.git
+  GIT_REPOSITORY [REDACTED]
   DOWNLOAD_ONLY YES
 )
 include_directories("${GHL_SOURCE_DIR}/include")

@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "Graph Hook Library"
-copyright = "2025, IBM"
-author = "IBM"
+copyright = "2025, REDACTED"
+author = "REDACTED"
 release = "0.1.0"
 
 # -- General configuration ---------------------------------------------------
