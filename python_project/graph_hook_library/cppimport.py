@@ -17,22 +17,23 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+import os
+import pybind11
 
-function(add_example name)
-    add_executable(${name} ${ARGN})
-    foreach(boost_lib ${BOOST_INCLUDE_LIBRARIES})
-        if(TARGET Boost::${boost_lib})
-            target_link_libraries(${name} PRIVATE Boost::${boost_lib})
-        endif()
-    endforeach()
-    if(GHL_BINDINGS)
-        target_link_libraries(${name} PUBLIC ${Python3_LIBRARIES})
-    endif()
-    target_link_libraries(${name} PRIVATE ghl::ghl)
-endfunction()
 
-file(GLOB BENCHMARK_SOURCES "*.cpp")
-foreach(benchmark_file ${BENCHMARK_SOURCES})
-    get_filename_component(benchmark_name ${benchmark_file} NAME_WE)
-    add_example(${benchmark_name} ${benchmark_file})
-endforeach()
+def default_cfg():
+    include_dir = os.path.dirname(__file__)
+    return {
+        "extra_compile_args": [
+            "-std=c++20",
+            "-O3",
+            "-march=native",
+            "-flto",
+            "-funroll-loops",
+            "-DNDEBUG",
+        ],
+        "include_dirs": [
+            os.path.join(include_dir, "include"),
+            pybind11.get_include(),
+        ],
+    }

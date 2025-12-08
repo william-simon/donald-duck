@@ -11,16 +11,35 @@ Is a standalone C++ header-only generic graph library built upon the Boost Graph
 
 > The primary feature of the GHL is to provide a robust environment for developing and applying graph transformations or isomorphisms. These isomorphisms can either be contingent on the properties of the graph, such as the edge in or out degree of vertices, or con the subclassed properties of the vertex, such as class type or the value of a class member.
 
+## Note for ICSA reviewers
+Thank-you for taking the time to review our work. You will find the code necessary to replicate the results of our submission in the ICSA directory.
+
 ## Authors
-The GHL was developed with Corey Lammie, Hadjer Benmeziane, Tunaberk Almaci, and William Simon, as the initial core authors.
+The GHL was developed with [hidden for blind review], as the initial core authors.
 
 ## Setup/Installation
+
+#### Dependencies
+
+The GHL relies on pybind11, which may be installed via `pip install pybind11`.
+
+Secondly, the library makes use of C++20 features, particularly std::format. If attempting to install the library results in compilation errors, it is likely that the compiler being used does not support these features. It is recommended in such cases to use a conda environment, e.g:
+```
+conda create -n ghl gxx>=13.3.0 cmake python=3.11
+````
+
 The GHL can be setup/installed in two different ways:
 
 #### 1. As a Python-based library:
-For sake of convenience, we provide a Python package with bindings, that can be installed using:
+<!-- For sake of convenience, we provide a Python package with bindings, that can be installed using:
 
-`pip install git+https://github.com/IBM/graph-hook-library.git`
+`pip install git+https://github.com/IBM/graph-hook-library.git` -->
+
+Until open-sourced and deanonymized, the GHL can be installed by calling
+
+`pip install -e .`
+
+from the top-level directory.
 
 It can then be used as follows:
 
@@ -42,9 +61,6 @@ When building a C++ project including the GHL, a number of optional features can
 2. `GHL_BINDINGS`: Enables python bindings using [pybind11](https://github.com/pybind/pybind11).
 
 To set these directly using CMake, the following commands can be used: `add_compile_definitions(GHL_SERIALIZATION)` and `add_compile_definitions(GHL_BINDINGS)`.
-
-## Documentation
-Some documentation for the C++ code is avaliable at [https://ibm.github.io/graph-hook-library/](https://ibm.github.io/graph-hook-library/). We plan to improve this and to add documentation for the Python bindings in due course.
 
 ## Isomorphism Framework Overview
 The isomorphism framework provides methods for:
