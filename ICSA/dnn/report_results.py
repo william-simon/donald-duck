@@ -67,7 +67,7 @@ def plot_results(rows: List[Dict[str, str]], output_path: Path) -> None:
         start_pos = current_pos
         for item in items:
             positions.append(current_pos)
-            labels.append(item["transformation"])
+            labels.append(f"{item['transformation']} ({item['matches']})")
             current_pos += 1.0
         model_centers.append((start_pos + current_pos - 1) / 2.0)
         if idx < len(models) - 1:
@@ -113,7 +113,7 @@ def plot_results(rows: List[Dict[str, str]], output_path: Path) -> None:
     ax.set_yscale("log")
     ax.grid(True, linestyle="--", alpha=0.35, which="both")
     ax.set_axisbelow(True)
-    ax.legend(frameon=True, framealpha=0.95, ncol=3)
+    ax.legend(loc="lower right", frameon=True, framealpha=0.95, ncol=3)
     for spine in ax.spines.values():
         spine.set_visible(True)
         spine.set_linewidth(1.0)

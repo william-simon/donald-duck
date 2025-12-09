@@ -64,11 +64,15 @@ def _mol_to_chem_graph(mol: Chem.Mol) -> ghl_chem.ChemGraph:
 def match_with_rdkit(patt, file_name):
     matches = []
     total_loop = 0
+    total_atoms = 0
     with Chem.SDMolSupplier(file_name) as suppl:
         loop_start = time.perf_counter()
         mol_count = 0
         for mol in suppl:
             mol_count += 1
+            if mol is None:
+                continue
+            total_atoms += mol.GetNumAtoms()
             if mol.HasSubstructMatch(patt):
                 matches.append(mol)
         total_loop = time.perf_counter() - loop_start
@@ -78,7 +82,9 @@ def match_with_rdkit(patt, file_name):
                 f"RDKit loop processed {mol_count} molecules in {total_loop:.3f}s "
                 f"(avg {total_loop / mol_count:.6f}s)"
             )
-    return len(matches), total_loop
+    mean_atoms = total_atoms / mol_count if mol_count else 0
+    print(f"Mean atoms per molecule: {mean_atoms:.2f}")
+    return len(matches), total_loop, mean_atoms
 
 
 def build_molecule_graphs(file_name):
@@ -204,11 +210,13 @@ def main():
         True: {"discover": [], "highlight": []},
     }
     pattern_labels = []
+    mean_atoms_across_runs = []
     for string_pattern in patterns:
         patt = Chem.MolFromSmarts(string_pattern)
-        rdkit_matches, rdkit_time = match_with_rdkit(patt, file_name)
+        rdkit_matches, rdkit_time, mean_atoms = match_with_rdkit(patt, file_name)
         pattern_labels.append(string_pattern)
         rdkit_times.append(rdkit_time)
+        mean_atoms_across_runs.append(mean_atoms)
         for use_vf3 in (True, False):
             ghl_chem_matches, discover_time, highlight_time = match_with_ghl(
                 patt, file_name, use_vf3, string_pattern == "c1ncccc1"
@@ -217,6 +225,9 @@ def main():
             ghl_times[use_vf3]["discover"].append(discover_time)
             ghl_times[use_vf3]["highlight"].append(highlight_time)
     plot_results(pattern_labels, rdkit_times, ghl_times)
+    if mean_atoms_across_runs:
+        overall_mean_atoms = sum(mean_atoms_across_runs) / len(mean_atoms_across_runs)
+        print(f"Average atoms per molecule across patterns: {overall_mean_atoms:.2f}")
 
 
 if __name__ == "__main__":
