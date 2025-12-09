@@ -42,7 +42,7 @@ It can then be used as follows:
 
 ```
 from graph_hook_library import ghl_bindings
-g = ghl_bindings.Graph()
+g = ghl_bindings.DirectedGraph()
 ```
 
 Python-based tests can then be run using `pytest tests/python -s`.
@@ -70,7 +70,7 @@ The isomorphism framework provides methods for:
 ## Step-by-Step Isomorphism Workflow
 
 1. Define Pattern Matching Class
-   - Create a class inheriting from `ghl::Isomorphism`
+   - Create a class inheriting from `ghl::DirectedIsomorphism` or `ghl::UndirectedIsomorphism`
    - Override virtual methods to modify isomorphism behavior. Every method mentioned
    below is overridable.
 
