@@ -15,7 +15,7 @@ Is a standalone C++ header-only generic graph library built upon the Boost Graph
 Thank-you for taking the time to review our work. You will find the code necessary to replicate the results of our submission in the ICSA directory.
 
 ## Authors
-The GHL was developed with [hidden for blind review], as the initial core authors.
+The GHL was developed with Corey Lammie, Hadjer Benmeziane, Tunaberk Almaci, and William Simon, as the initial core authors.
 
 ## Setup/Installation
 
