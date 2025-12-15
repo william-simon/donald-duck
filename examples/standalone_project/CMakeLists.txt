@@ -25,7 +25,7 @@ CPMAddPackage(
 CPMAddPackage(
   NAME GHL
   GIT_TAG Tunaberk-Almaci
-  GIT_REPOSITORY [REDACTED]
+  GIT_REPOSITORY [IBM]
   DOWNLOAD_ONLY YES
 )
 include_directories("${GHL_SOURCE_DIR}/include")
